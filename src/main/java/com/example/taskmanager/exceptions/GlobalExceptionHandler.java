@@ -3,6 +3,7 @@ package com.example.taskmanager.exceptions;
 import com.example.taskmanager.dto.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -33,6 +34,15 @@ public class GlobalExceptionHandler {
 
         errors.put("messages", errorDetails);
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<Map<String, Object>> handleBadCredentialsException(BadCredentialsException ex) {
+        Map<String, Object> errors = new HashMap<>();
+        errors.put("status", HttpStatus.UNAUTHORIZED.value());
+        errors.put("error", "Invalid Credentials");
+        errors.put("message", "Invalid username or password");
+        return new ResponseEntity<>(errors, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(TaskNotFoundException.class)
