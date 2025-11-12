@@ -7,7 +7,9 @@ public enum ErrorMessages {
     INVALID_TOKEN("Invalid token"),
     ACCOUNT_ALREADY_VERIFIED("Account has already been verified"),
     TASK_NOT_FOUND("Task not found"),
-    VERIFICATION_TOKEN_EXPIRED("The verification token you entered has expired");
+    VERIFICATION_TOKEN_EXPIRED("The verification token you entered has expired"),
+    VALIDATION_ERROR("Validation error"),
+    INVALID_CREDENTIALS("Invalid username or password");
 
     private String message;
 
