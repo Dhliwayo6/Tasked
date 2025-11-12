@@ -1,7 +1,8 @@
 package com.example.taskmanager.model;
 
-import com.example.taskmanager.enums.Role;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -9,6 +10,8 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "app_users")
 public class User implements UserDetails {
@@ -24,9 +27,6 @@ public class User implements UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
-//    @Enumerated(EnumType.STRING)
-//    private Role role;
-
     @Column(name = "verification_code")
     private String verificationCode;
     @Column(name = "verification_code_expiry")
@@ -37,63 +37,6 @@ public class User implements UserDetails {
         this.username = username;
         this.email = email;
         this.password = password;
-    }
-
-    public User() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.email;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getVerificationCode() {
-        return verificationCode;
-    }
-
-    public void setVerificationCode(String verificationCode) {
-        this.verificationCode = verificationCode;
-    }
-
-    public LocalDateTime getVerificationExpiry() {
-        return verificationExpiry;
-    }
-
-    public void setVerificationExpiry(LocalDateTime verificationExpiry) {
-        this.verificationExpiry = verificationExpiry;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 
     @Override
